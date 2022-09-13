@@ -3,9 +3,10 @@ import React from 'react';
 interface TodoListItem {
   todo: Todo
   toggleTodo: (selectedTodo : Todo) => void
+  handleRemove: (selectedItem: Todo)=> void;
 }
 
-export const TodoListItem = ({todo, toggleTodo} : TodoListItem) => {
+export const TodoListItem = ({todo, toggleTodo, handleRemove} : TodoListItem) => {
   return ( 
     <li>
     <label
@@ -19,6 +20,9 @@ export const TodoListItem = ({todo, toggleTodo} : TodoListItem) => {
         }}
       />{' '}
       {todo.text}
+      <button type="button" onClick={() => handleRemove(todo)}>
+            Remove
+          </button>
     </label>
   </li>
 );

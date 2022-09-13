@@ -23,8 +23,18 @@ const initialTodos: Todo[] = [
 ];
 
 function App() {
+
   const [todos, setTodos] = useState(initialTodos);
 
+
+  const  handleRemove = (todo : Todo) =>{
+    console.log(todo.text)
+
+    const newTodos = todos.filter((item) => item !== todo);
+
+    setTodos(newTodos);
+  }
+  
   const toggleTodo = (selectedTodo: Todo) => {
     const newTodos = todos.map((todo) => {
       if (todo === selectedTodo) {
@@ -45,7 +55,7 @@ function App() {
   
     return (
       <form>
-    <TodoList todos={todos} toggleTodo={toggleTodo} />
+    <TodoList todos={todos} toggleTodo={toggleTodo} handleRemove={handleRemove}/>
     <AddTodoForm addTodo={addTodo}/>
     </form>
     );
