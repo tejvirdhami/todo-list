@@ -1,16 +1,25 @@
 import React from 'react';
 
 interface TodoListItem {
-    text: string
-    complete: boolean
+  todo: Todo
+  toggleTodo: (selectedTodo : Todo) => void
 }
 
-export const TodoListItem = ({text, complete} : TodoListItem) => {
-  return ( <li>
-  <label
-    style={{ textDecoration: complete ? 'line-through' : undefined }}
-  >
-    <input type="checkbox" checked={complete} /> {text}
-  </label>
-</li> );
+export const TodoListItem = ({todo, toggleTodo} : TodoListItem) => {
+  return ( 
+    <li>
+    <label
+      style={{ textDecoration: todo.complete ? 'line-through' : undefined }}
+    >
+      <input
+        type="checkbox"
+        checked={todo.complete}
+        onClick={() => {
+          toggleTodo(todo);
+        }}
+      />{' '}
+      {todo.text}
+    </label>
+  </li>
+);
 };
